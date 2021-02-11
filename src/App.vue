@@ -1,14 +1,17 @@
 <template>
-  <TopBar />
+	<div id="top-bar" class="clearfix">
+        <div id="contact-sunny">
+            <img id="sunny-profile-pic" src="./assets/sunny-profile-pic.png" alt="sunny profile pic">
+        </div>
+	</div>
+  <router-view></router-view>
 </template>
 
 <script>
-import TopBar from './components/TopBar.vue'
 
 export default {
   name: 'App',
   components: {
-    TopBar
   }
 }
 </script>
@@ -28,8 +31,15 @@ body {
 	margin: 0 auto;
 	max-width: 1200px;
 }
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
 .clearfix {
-	clear: both;
+  *zoom: 1; /*For IE 6&7 only*/
 }
 img {
 	display: block;
@@ -41,4 +51,17 @@ a {
 }
 /* #app {
 } */
+#top-bar {
+    /* max-height: 70px; */
+    background-color: #ffeb3f;
+	padding: 6px 10px;
+}
+#contact-sunny {
+	float: left;
+	max-width: 50px;
+}
+#sunny-profile-pic {
+	border: 1px solid #fff;
+	border-radius: 50%;
+}
 </style>
