@@ -16,7 +16,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+$theme-color: #ffed68;
 * {
 	box-sizing: border-box;
 }
@@ -53,15 +54,15 @@ a {
 } */
 #top-bar {
     /* max-height: 70px; */
-    background-color: #ffeb3f;
+    background-color: $theme-color;
 	padding: 6px 10px;
-}
-#contact-sunny {
-	float: left;
-	max-width: 50px;
-}
-#sunny-profile-pic {
-	border: 1px solid #fff;
-	border-radius: 50%;
+	#contact-sunny {
+		float: left;
+		max-width: 50px;
+	}
+	#sunny-profile-pic {
+		border: 1px solid #fff;
+		border-radius: 50%;
+	}
 }
 </style>
