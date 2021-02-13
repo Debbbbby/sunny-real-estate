@@ -1,4 +1,13 @@
 module.exports = {
+  // css: {
+  //   loaderOptions: {
+  //     sass: {
+  //       additionalData: `
+  //          @import "@/css/fontello.scss";
+  //       `
+  //     }
+  //   }
+  // },
   module: {
     rules: [
       // ... other rules omitted
