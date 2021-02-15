@@ -203,6 +203,9 @@ h2.property-title {
     font-size: 22px;
     background-color: $theme-orange;
     color: #fff;
+    .price {
+        font-weight: bold;
+    }
     .price-title, .price-unit {
         font-size: 14px;
     }

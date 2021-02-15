@@ -117,4 +117,21 @@ section {
         padding: 0px 10px;
     }
 }
+
+// RWD
+@media (max-width: 1024px) {
+}
+@media (max-width: 900px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 720px) {
+    .h-400 {
+        height: 400px;
+    }
+}
+@media (max-width: 480px) {
+}
+@media (min-width: 320px) and (max-width: 350px) {
+}
 </style>

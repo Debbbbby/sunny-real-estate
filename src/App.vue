@@ -16,7 +16,7 @@
 				<a href="tel:0913-320-118">打給秀雅</a>
 			</li>
 			<li class="contact-btn email">
-				<a href="mailto:deb.tsaiyi@gmail.com">寄 email 給秀雅</a>
+				<a href="mailto:ya919350@gmail.com">寄 email 給秀雅</a>
 			</li>
 		</ul>
 	</div>
@@ -37,7 +37,6 @@ export default {
   methods: {
 	toggleContact() {
 		this.contactOpen = !this.contactOpen
-		console.log('contactOpen:', this.contactOpen);
 	}
   }
 }
