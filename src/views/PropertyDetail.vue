@@ -88,6 +88,8 @@
 </template>
 
 <script>
+import { Loader } from '@googlemaps/js-api-loader';
+
 export default {
     name: "PropertyDetail",
     data() {
@@ -123,15 +125,37 @@ export default {
             /** 價格標頭（總價/租金） */
             priceTitle: "",
             /** 價格單位文字 */
-            priceUnitText: ""
+            priceUnitText: "",
+            /** Google Maps JavaScript API Loader */
+            GMloader: new Loader({
+                apiKey: "AIzaSyB70qwoLeaN4QyIXAbWI4ufQgS2XK41an4",
+                version: "weekly",
+                libraries: ["places"]
+            }),
+            /** Google Maps 顯示配置 */
+            mapOptions: {
+                center: {
+                    lat: 25.0157902,
+                    lng: 121.2115798
+                },
+                zoom: 15
+            }
         }
     },
-    // created() {
-    // },
     mounted() {
         // this.testWrite();
         this.testRead();
-        this.initMap();
+        this.GMloader.load()
+            .then(() => {
+                const map = new window.google.maps.Map(document.getElementById("map"), this.mapOptions);
+                new window.google.maps.Marker({
+                    position: this.mapOptions.center,
+                    map: map,
+                });
+            })
+            .catch(() => {
+                console.warn('Failed to load Google Maps!');
+            });
     },
     methods: {
         /** 轉換價格標題 */
@@ -152,22 +176,6 @@ export default {
                 case 2:
                     return this.priceUnitText = "億";
             }
-        },
-        /** Initialize and add the map */
-        initMap() {
-            // The location of Uluru
-            const location = { lat: 25.0157902, lng: 121.2115798 };
-            // The map, centered at Uluru
-            const map = new window.google.maps.Map(document.getElementById("map"), {
-                zoom: 15,
-                center: location,
-            });
-            // The marker, positioned at the location
-            // eslint-disable-next-line no-unused-vars
-            const marker = new window.google.maps.Marker({
-                position: location,
-                map: map,
-            });
         },
         /** 測試寫資料進 Firebase */
         testWrite() {

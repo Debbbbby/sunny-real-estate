@@ -15,7 +15,7 @@
 		<ul class="contact-list">
 			<li class="contact-btn line">
 				<img id="lineLogo" src="./assets/150px_LINE_logo.png" class="icon_contact-way">
-				<a href="https://line.me/R/ti/p/Shh506720">加秀雅為 LINE 好友</a>
+				<a href="https://line.me/R/ti/p/sunnyya0612">加秀雅為 LINE 好友</a>
 			</li>
 			<li class="contact-btn cellphone">
 				<i class="icon-phone icon_contact-way"></i>
@@ -32,6 +32,7 @@
 	<div class="container">
 		<router-view></router-view>
 	</div>
+	<footer></footer>
 </template>
 
 <script>
@@ -140,6 +141,9 @@ body {
 	margin: 0;
 	width: 100%;
 }
+footer {
+	height: 60px;
+}
 .container {
 	margin: 0 auto;
 	max-width: 1200px;
@@ -211,7 +215,7 @@ a {
 // contact-card
 #contact-card {
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 50vh;
 	left: 50%;
 	transform: translate(-50%, -50%);
