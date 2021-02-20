@@ -92,44 +92,45 @@ export default {
     name: "PropertyDetail",
     data() {
         return {
-            propertyData: {
-                imgUrls: [
-                    "https://picsum.photos/id/1076/1600/900",
-                    "https://picsum.photos/id/221/1600/900",
-                    "https://picsum.photos/id/514/1600/900"
-                ],
-                title: "大園航空城海豐坡華夏",
-                forRentSell: 0, // 0-售, 1-租
-                price: 520,
-                priceUnit: 1, // 0-千, 1-萬, 2-億
-                buildingSpace_total: 40.59,
-                buildingSpace_main: 26.58,
-                buildingSpace_sub: 2.66,
-                buildingSpace_shared: 11.35,
-                buildingSpace_parking: null,
-                buildingSpace_extra: null,
-                landSpace_total: 10.37,
-                landSpace_warrant: null,
-                landSpace_hold: 10.37,
-                landSpace_other: null,
-                landSpace_coverage: null,
-                landSpace_capacity: null,
-                landSpace_width: null,
-                landSpace_depth: null,
-                address: "桃園市大園區海豐坡1之16號7樓（八樓增建）",
-                description: "<p>屋齡：82年06月30日建築完成<br/>格局：七樓3房2廳1衛2陽台<br/>八樓2房1廳2衛1陽台<br/>樓層：7樓/7樓（8樓增建未辦保存登記）<br/>朝向：坐東北做東北朝西南<br/>地下一樓有1個車位</p>"
-            },
+            propertyData: {},
+            // propertyData_forTestWrite: {
+            //     imgUrls: [
+            //         "https://picsum.photos/id/1076/1600/900",
+            //         "https://picsum.photos/id/221/1600/900",
+            //         "https://picsum.photos/id/514/1600/900"
+            //     ],
+            //     title: "大園航空城海豐坡華夏",
+            //     forRentSell: 0, // 0-售, 1-租
+            //     price: 520,
+            //     priceUnit: 1, // 0-千, 1-萬, 2-億
+            //     buildingSpace_total: 40.59,
+            //     buildingSpace_main: 26.58,
+            //     buildingSpace_sub: 2.66,
+            //     buildingSpace_shared: 11.35,
+            //     buildingSpace_parking: null,
+            //     buildingSpace_extra: null,
+            //     landSpace_total: 10.37,
+            //     landSpace_warrant: null,
+            //     landSpace_hold: 10.37,
+            //     landSpace_other: null,
+            //     landSpace_coverage: null,
+            //     landSpace_capacity: null,
+            //     landSpace_width: null,
+            //     landSpace_depth: null,
+            //     address: "桃園市大園區海豐坡1之16號7樓（八樓增建）",
+            //     description: "<p>屋齡：82年06月30日建築完成<br/>格局：七樓3房2廳1衛2陽台<br/>八樓2房1廳2衛1陽台<br/>樓層：7樓/7樓（8樓增建未辦保存登記）<br/>朝向：坐東北做東北朝西南<br/>地下一樓有1個車位</p>"
+            // },
             /** 價格標頭（總價/租金） */
             priceTitle: "",
             /** 價格單位文字 */
             priceUnitText: ""
         }
     },
-    created() {
-        this.transPriceTitle();
-        this.transPriceUnit();
-    },
+    // created() {
+    // },
     mounted() {
+        // this.testWrite();
+        this.testRead();
         this.initMap();
     },
     methods: {
@@ -166,6 +167,53 @@ export default {
             const marker = new window.google.maps.Marker({
                 position: location,
                 map: map,
+            });
+        },
+        /** 測試寫資料進 Firebase */
+        testWrite() {
+            fetch('https://sunny-real-estate-ba169-default-rtdb.firebaseio.com/testWrite.json', {
+                method: 'POST', // get, delete, patch, ...
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.propertyData_forTestWrite)
+            })
+            .then((response) => {
+                // triggered when we have a regular response
+                if (response.ok) {
+                    // ...
+                } else {
+                    // e.g. when we have a 400- 500- status code
+                    throw new Error('Could not save data!')
+                    // the Error will reach the 'catch' below
+                }
+            })
+            .catch((error) => {
+                // Sending data failed
+                console.log('error - Sending data failed:', error)
+                // console.log('error - from response not ok above:', error.message)
+            });
+            console.log('testWrite');
+        },
+        /** 測試讀取 Firebase 資料 */
+        testRead() {
+            fetch('https://sunny-real-estate-ba169-default-rtdb.firebaseio.com/testWrite.json')
+            .then((response) => {
+                if (response.ok) {
+                    // successful
+                    return response.json();
+                }
+            }).then((data) => {
+                // triggered when the 'return' promise in 'response.ok' is done
+                // console.log('data:', Object.values(data)[0]);
+                this.propertyData = Object.values(data)[0];
+                console.log('propertyData:', this.propertyData);
+                this.transPriceTitle();
+                this.transPriceUnit();
+            })
+            .catch((error) => {
+                // triggered when any error occurs in the prvious 'then' blocks
+                console.log('error:', error)
             });
         }
     }
