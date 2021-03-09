@@ -101,6 +101,33 @@ export default {
             //         "https://picsum.photos/id/221/1600/900",
             //         "https://picsum.photos/id/514/1600/900"
             //     ],
+            //     title: "中壢sogo金三角店面",
+            //     forRentSell: 1, // 0-售, 1-租
+            //     price: 10,
+            //     priceUnit: 0, // 0-千, 1-萬, 2-億
+            //     buildingSpace_total: 93.47,
+            //     buildingSpace_main: 68.55,
+            //     buildingSpace_sub: 3.49,
+            //     buildingSpace_shared: 1.2,
+            //     buildingSpace_parking: 4,
+            //     buildingSpace_extra: 12,
+            //     landSpace_total: 4.37,
+            //     landSpace_warrant: null,
+            //     landSpace_hold: 4.37,
+            //     landSpace_other: null,
+            //     landSpace_coverage: null,
+            //     landSpace_capacity: null,
+            //     landSpace_width: null,
+            //     landSpace_depth: null,
+            //     address: "桃園市中壢區義民路二段157號",
+            //     description: "<p>家裡</p>"
+            // },
+            // propertyData_forTestWrite: {
+            //     imgUrls: [
+            //         "https://picsum.photos/id/1076/1600/900",
+            //         "https://picsum.photos/id/221/1600/900",
+            //         "https://picsum.photos/id/514/1600/900"
+            //     ],
             //     title: "大園航空城海豐坡華夏",
             //     forRentSell: 0, // 0-售, 1-租
             //     price: 520,
@@ -190,6 +217,7 @@ export default {
                 // triggered when we have a regular response
                 if (response.ok) {
                     // ...
+                    console.log('testWrite success')
                 } else {
                     // e.g. when we have a 400- 500- status code
                     throw new Error('Could not save data!')
